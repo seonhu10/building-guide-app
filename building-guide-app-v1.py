@@ -9,16 +9,16 @@ GEMINI_API_KEY = st.secrets["GEMINI_API_KEY"]
 client = genai.Client(api_key=GEMINI_API_KEY)
 
 # --- 2. 앱 화면 구성 (GUI) ---
-st.set_page_config(page_title="건물 정보 가이드 (Gemini)", page_icon="🏢")
+st.set_page_config(page_title="건물 정보 검색", page_icon="🏢")
 
-st.title("🏢 건물 정보 돋보기 (Gemini 버전)")
-st.subheader("궁금한 건물의 정보를 즉시 확인하세요!")
+st.title("🏢 건물 정보 검색")
+st.subheader("도시와 건물 이름을 입력하세요.")
 
 col1, col2 = st.columns(2)
 with col1:
-    city = st.text_input("도시 입력", placeholder="예: 서울, 파리")
+    city = st.text_input("도시", placeholder="예: 서울, 파리")
 with col2:
-    building_name = st.text_input("건물 이름 입력", placeholder="예: 63빌딩, 에펠탑")
+    building_name = st.text_input("건물 이름", placeholder="예: 63빌딩, 에펠탑")
 
 if st.button("정보 가져오기"):
     if not city or not building_name:
@@ -33,7 +33,7 @@ if st.button("정보 가져오기"):
                 
                 # 최신 SDK에서는 client.models.generate_content를 사용합니다.
                 response = client.models.generate_content(
-                    model="gemini-2.5-flash",
+                    model="gemini-3-pro",
                     contents=user_prompt,
                     config={
                         'system_instruction': (
@@ -50,4 +50,5 @@ if st.button("정보 가져오기"):
                 st.write(response.text)
                 
             except Exception as e:
+
                 st.error(f"오류가 발생했습니다: {e}")
