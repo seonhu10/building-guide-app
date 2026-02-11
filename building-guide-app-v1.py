@@ -33,7 +33,7 @@ if st.button("정보 가져오기"):
                 
                 # 최신 SDK에서는 client.models.generate_content를 사용합니다.
                 response = client.models.generate_content(
-                    model="gemini-3-flash",
+                    model="gemini-2.5-pro",
                     contents=user_prompt,
                     config={
                         'system_instruction': (
@@ -52,4 +52,5 @@ if st.button("정보 가져오기"):
             except Exception as e:
 
                 st.error(f"오류가 발생했습니다: {e}")
+
 
