@@ -1,0 +1,32 @@
+# Secrets — NEVER commit these
+.streamlit/secrets.toml
+.env
+.env.*
+!.env.example
+*.key
+*.pem
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.Python
+*.egg-info/
+.pytest_cache/
+.venv/
+venv/
+env/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+Thumbs.db
+.DS_Store
+Desktop.ini
+
+# Streamlit (allow .example files only)
+.streamlit/*
+!.streamlit/secrets.toml.example
+!.streamlit/config.toml.example
