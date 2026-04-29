@@ -35,12 +35,13 @@ with st.sidebar:
     model_choice = st.selectbox(
         "모델 선택",
         options=[
-            ("claude-sonnet-4-5", "Sonnet 4.5 (균형, 추천)"),
+            ("claude-sonnet-4-6", "Sonnet 4.6 (균형, 추천)"),
             ("claude-haiku-4-5", "Haiku 4.5 (빠름, 저렴)"),
-            ("claude-opus-4-5", "Opus 4.5 (최고 품질, 느림)"),
+            ("claude-opus-4-7", "Opus 4.7 (최고 품질, 느림)"),
         ],
         format_func=lambda x: x[1],
         index=0,
+        help="Sonnet 4.6: 균형 잡힌 선택. Haiku: 빠른 답변이 필요할 때. Opus: 높은 정확도가 필요할 때.",
     )
     selected_model = model_choice[0]
 
