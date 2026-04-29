@@ -15,7 +15,7 @@ from datetime import datetime
 # --- 1. API 키 로드 ---
 # Streamlit Cloud의 비밀 저장소(또는 .streamlit/secrets.toml)에서 키 로드
 try:
-    ANTHROPIC_API_KEY = ***"ANTHROPIC_API_KEY"]
+    ANTHROPIC_API_KEY = st.secrets["ANTHROPIC_API_KEY"]
 except (KeyError, FileNotFoundError):
     ANTHROPIC_API_KEY = None
 
@@ -124,7 +124,7 @@ if st.button("🔍 정보 가져오기", type="primary"):
     if not city.strip() or not building_name.strip():
         st.warning("⚠️ 도시와 건물 이름을 모두 입력해 주세요.")
     elif not ANTHROPIC_API_KEY:
-        ***"❌ API 키가 설정되지 않았습니다. `.streamlit/secrets.toml` 또는 Streamlit Cloud secrets에 `ANTHROPIC_API_KEY`를 등록해주세요.")
+        st.error("❌ API 키가 설정되지 않았습니다. `.streamlit/secrets.toml` 또는 Streamlit Cloud secrets에 `ANTHROPIC_API_KEY`를 등록해주세요.")
     else:
         try:
             client = Anthropic(api_key=ANTHROPIC_API_KEY)
@@ -165,7 +165,7 @@ if st.button("🔍 정보 가져오기", type="primary"):
             st.session_state.history = st.session_state.history[:10]  # 최근 10개
 
         except Exception as e:
-            ***f"오류 발생: {e}")
+            st.error(f"오류 발생: {e}")
             st.caption("API 키, 네트워크, 모델 ID를 확인해보세요.")
 
 # --- 8. 사이드바 히스토리 ---
